@@ -10,3 +10,7 @@ Talvez um solução melhor tivesse sido repensar usando uma arquitetura mais for
 Como no readme vocês deixavam bem claro sobre o Typescript, eu fiquei pensando se deveria usar Ecma6 ou não.
 Devia ter perguntado, estou com saudades de algumas coisas dele hahaha.
 
+## Gulp
+O Gulp pode parecer um pouco chato e extenso demais.
+Realmente é !  Ele é baseado em alguns outros gulps que fiz para angular e alguns outros que vi por ai e como resolvi não me dedicar a isso, acabei deixando sem muita coisa
+

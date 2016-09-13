@@ -1,0 +1,24 @@
+.page-title {
+  color: $dark-primary-color;
+  text-align: center;
+}
+
+.form-control {
+  width: calc(50% - 10px);
+  margin-right: 10px;
+  float: left;
+  text-align: center;
+  color: $font-color;
+  font-size: 1.8rem;
+  .field-label {
+    display: block;
+  }
+  .input-field {
+    border-radius: 3px;
+    border: 1px solid $light-primary-color;
+  }
+}
+
+.form-action {
+  text-align: center
+}

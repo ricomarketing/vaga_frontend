@@ -1,0 +1,13 @@
+.btn-default {
+  background-color: $accent-color;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  transition: opacity .25s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+}

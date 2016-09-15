@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="ricoApp">
+<head>
+	<title>Tesouro Direto</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="css/style.scss">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/0.1.0/ng-google-chart.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/appRico.js"></script>
+</head>
+<body>
+	<h1>Tesouro Direto</h1>
+	<div ng-controller="TreasuryController as tresouryCtrl">
+		<div>	
+			<form name="frmReturn" ng-submit="frmReturn.$valid && tresouryCtrl.getTreasures()">
+				<p>
+					<span>Tempo de investimento: {{investmentTime}}</span><br/>
+					<input id="sliderInvestmentTime" type="range" min="30" max="720" step="30" ng-model="investmentTime" required/>
+				</p>
+				<p>
+					<span>Valor Investido:</span><br/>
+					<input id="textInvestmentValue" type="number" step="any" min="0.01" max="999999999" ng-model="investmentValue" required/>
+				</p>
+				<p>
+					<input type="submit" value="Simular Rendimento" >
+				</p>
+			</form>
+		</div>
+		<div>
+			<p>{{messageError}}</p>
+		</div>
+		<div ng-show="showGrid">
+			<table>
+				<tr>
+					<th>Nome do produto</th>
+					<th>Nome do tipo do produto</th>
+					<th>Código Indexador</th>
+					<th>Valor para quantidade mínima</th>
+					<th>Valor de compra por unidade</th>
+					<th>Quantidade mínima para compra</th>
+					<th>Valor mínimo para compra</th>
+					<th>Taxa de rendimento por ano</th>
+					<th>Valor do nominal do percentual de taxa</th>
+					<th>Data de lançamento</th>
+					<th>Data de vencimento</th>
+					<th>Rentabilidade {{investmentTime/30}} meses</th>
+				</tr>
+				<tr ng-repeat="treasure in treasures | orderBy:['-return']">
+					<td>{{treasure.name}}</td>
+					<td>{{treasure.type.name}}</td>
+					<td>{{treasure.index.name}}</td>
+					<td class="colNumbers">{{treasure.value | currency:"R$":4}}</td>
+					<td class="colNumbers">{{treasure.currentUnitValue | currency:"R$":4}}</td>
+					<td class="colNumbers">{{treasure.minimumQuantity }}</td>
+					<td class="colNumbers">{{treasure.minimumValue | currency:"R$":4}}</td>
+					<td class="colNumbers">{{treasure.currentInterestRate | currency:"R$":4}}</td>
+					<td class="colNumbers">{{treasure.currentInterestPercentageValue}}</td>
+					<td class="colDate">{{treasure.issueDate | date:"dd-MM-yyyy"}}</td>
+					<td class="colDate">{{treasure.maturityDate | date:"dd-MM-yyyy"}}</td>
+					<td class="colNumbers">{{treasure.return | currency:"R$":4}}</td>
+				</tr> 
+			</table>
+		</div>
+		<div>
+			<div google-chart chart="chartReturn" style="height:600px; width:100%;"></div>
+		</div>
+	</div>
+</body>
+</html>

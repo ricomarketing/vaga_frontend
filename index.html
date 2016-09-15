@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="rico">
+<head>
+	<meta charset="UTF-8" />            
+	<title>Produtos de Tesouro Direto</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css\styles-1.0.0.min.css">    
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.8/angular-locale_pt-br.js"></script>
+	
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>	
+
+	<script src="js\scripts-1.0.0.min.js"></script>
+</head>
+
+<body>
+    <div class="cabec">
+        <div ng-view></div>
+    </div> 
+
+	<div ng-include="'view/rodape.html'"></div>
+</body>
+</html>

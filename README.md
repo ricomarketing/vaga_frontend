@@ -14,3 +14,7 @@ Devia ter perguntado, estou com saudades de algumas coisas dele hahaha.
 O Gulp pode parecer um pouco chato e extenso demais.
 Realmente é !  Ele é baseado em alguns outros gulps que fiz para angular e alguns outros que vi por ai e como resolvi não me dedicar a isso, acabei deixando sem muita coisa
 
+
+## App
+### Modificações
+Tive que criar uma nova API, em um dominio meu do Apiary, pois ao tentar renderizar o JSON com comentários, ele retornava erros ao renderizar

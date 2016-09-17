@@ -13,7 +13,7 @@ Nesse README eu vou descrever tudo que pensei durante a criação desse projeto 
   npm install -g bower-npm-resolver
   npm install 
   bower install
-```sh
+```
 
 1. Use `gulp serve` para iniciar um servidor local de desenvolvimento
 2. Use `gulp build` para gerar a pasta build para produção

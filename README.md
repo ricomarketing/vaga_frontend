@@ -36,3 +36,7 @@ Realmente é !  Ele é baseado em alguns outros gulps que fiz para angular e alg
 ## App
 ### Modificações
 Tive que criar uma nova API, em um dominio meu do Apiary, pois ao tentar renderizar o JSON com comentários, ele retornava erros ao renderizar
+
+## Sobre o usuario que está realizando o teste.
+Como eu não queria deixar publico que estava realizando esse teste, criei essa conta para isso.
+Você pode me encontrar em @herberthenrique

@@ -1,0 +1,39 @@
+<vigilant-navbar></vigilant-navbar>
+<div class="container">
+  <h1 class="page-title">Queremos te ajudar a fazer o melhor investimento possível!</h3>
+  <form action="">
+    <div class="form-control">
+      <label class="field-label" for="">Quanto deseja investir? (R$)</label>
+      <input class="input-field" type="number" ng-model="vm.model.value">
+    </div>
+    <div class="form-control">
+      <label class="field-label" for="">Em quantos dias deseja receber?</label>
+      <rzslider rz-slider-model="vm.model.days" rz-slider-options="vm.sliderOptions"></rzslider>
+    </div>
+    <div class="form-action">
+      <button class="btn-default" type="button" ng-click="vm.calculate()">Buscar as melhores aplicações!</button>
+    </div>
+  </form>
+  <div class="results" ng-show="vm.calcDone">
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Lucro</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+      <tr ng-repeat="investment in vm.investments">
+        <td>{{investment.name}}</td>
+        <td>R$ {{investment.profit}}</td>
+        <td>R$ {{investment.total}}</td>
+      </tr>
+    </table>
+<div class="chart-container">
+    <canvas id="bar" class="chart chart-bar"
+      chart-data="vm.chart.data" chart-labels="vm.chart.labels">
+    </canvas>
+
+</div>
+  </div>
+</div>

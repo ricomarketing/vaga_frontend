@@ -1,0 +1,58 @@
+.page-title {
+  color: $dark-primary-color;
+  text-align: center;
+}
+
+.form-control {
+  width: calc(50% - 10px);
+  margin-right: 10px;
+  float: left;
+  text-align: center;
+  color: $font-color;
+  font-size: 1.8rem;
+  .field-label {
+    display: block;
+  }
+  .input-field {
+    border-radius: 3px;
+    border: 1px solid $light-primary-color;
+  }
+}
+
+.form-action {
+  text-align: center
+}
+
+.results {
+  margin-top: 4rem;
+  .table, .chart-container {
+    width: calc(50% - 4rem) ;
+    float: left;
+    margin: 2rem;
+  }
+}
+
+.table {
+  font-size: 1.6rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  thead {
+    font-weight: 700;
+    text-align: left;
+  }
+  td,
+  tr {
+    padding: 15px 5px;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+  th {
+    border-bottom: 1px solid $divider-color;
+    padding-bottom: 10px;
+  }
+}
+
+.rzslider {
+  max-width: 50%;
+}

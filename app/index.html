@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<title>Teste para FrontEnd na Rico</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+
+	<div class="content" ng-app="application" ng-controller="controller">
+		<h1>Tesouro Direto</h1>
+
+		<div class="header">
+			<div class="form-content">
+				<h2>Simulação de Investimento</h2>
+
+				<!-- erros -->
+				<span class="error-content" ng-if="errorMessage">{{errorMessage}}</span>
+
+				<!-- inputs de dados -->
+				<div class="form-item">
+					<label for="invTime">Tempo de Investimento (dias):</label>
+					<input type="number" name="invTime" step="{{invTimeStep}}" ng-model="invTime" />
+				</div>
+				<div class="form-item">
+					<label for="investment">Valor a Investir (R$):</label>
+					<input type="number" name="investment" step="{{invStep}}" ng-model="investment" />
+				</div>
+
+				<!-- botões do formulário -->
+				<button ng-if="!listIsLoading" ng-click="search()">Filtrar</button>
+				<button ng-if="!listIsLoading" ng-click="reset()">Exibir Todos</button>
+			</div>
+			<div class="table-content">
+				<h2>Aplicações</h2>
+
+				<!-- tabela de dados -->
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Título</th>
+							<th>Rendimento a.a.</th>
+							<th>Mínimo Investimento</th>
+							<th>Vencimento</th>
+							<th>Valor a Reter</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in list">
+							<td>{{item.name}}</td>
+							<td><pre>{{item.rateText}}</pre></td>
+							<td>{{item.minimumValue | currency : 'R$'}}</td>
+							<td>{{item.maturityDate | date : 'dd/MM/yyyy'}}</td>
+							<td>{{item.retainValue | currency : 'R$'}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- loading quando os dados estão sendo baixados -->
+				<div class="empty-info" ng-if="listIsLoading">Carregando dados...</div>
+
+				<!-- mensagem quando não há dados na tabela -->
+				<div class="empty-info" ng-if="listIsEmpty">Tabela sem dados</div>
+			</div>
+		</div>
+		<div class="footer">
+			<!-- gráfico de dados -->
+			<div class="chart-content">
+				<h2>Melhores aplicações</h2>
+
+				<!-- div para o google charts -->
+				<div id="ricoapp_chart" class="chart"></div>
+
+				<!-- mensagem quando não há dados no gráfico -->
+				<div class="empty-info" ng-if="chartIsEmpty">Gráfico sem dados</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

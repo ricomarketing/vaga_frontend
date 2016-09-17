@@ -1,0 +1,39 @@
+div.content {
+	width: $width-total;
+	font-family: $font-family;
+	font-size: 12px;
+
+	pre {
+		font-family: $font-family;
+		font-size: 12px;
+	}
+
+	div.header {
+		width: $width-total;
+
+		div.form-content {
+			width: $width-form;
+			float: left;
+		}
+
+		div.table-content {
+			width: $width-table;
+			float: right;
+		}
+	}
+
+	div.footer {
+		width: $width-total;
+		padding-top: 50px;
+		clear: both;
+
+		h2 {
+			text-align: center;
+		}
+	}
+
+	div.empty-info {
+		text-align: center;
+    	padding: 85px 0;
+	}
+}

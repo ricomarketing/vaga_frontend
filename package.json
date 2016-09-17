@@ -1,0 +1,8 @@
+{
+	"name": "vaga_frontend",
+	"dependencies": {
+		"gulp": "~3.9.1",
+		"gulp-concat": "~2.6.0",
+		"gulp-sass": "~2.3.2"
+	}
+}

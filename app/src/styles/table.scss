@@ -1,0 +1,42 @@
+table.table {
+	tr {
+		th {
+			width: 16%;
+			text-align: center;
+		}
+
+		th:nth-child(1) {
+			width: 36%;
+		}
+
+		td {
+			text-align: center;
+		}
+
+		td:nth-child(1) {
+			text-align: left;
+		}
+
+		th, td {
+			padding: 10px;
+		}
+	}
+
+	tbody {
+		tr:nth-child(even) {
+			background-color: #F0F0F0;
+		}
+	}
+
+	thead {
+		tr {
+			background-color: #7D8492;
+
+			th {
+				color: #FFFFFF;
+				font-weight: normal;
+				font-size: 14px;
+			}
+		}	
+	}
+}

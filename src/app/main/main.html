@@ -3,7 +3,7 @@
   <h1 class="page-title">Queremos te ajudar a fazer o melhor investimento possível!</h3>
   <form action="">
     <div class="form-control">
-      <label class="field-label" for="">Quanto deseja investir?</label>
+      <label class="field-label" for="">Quanto deseja investir? (R$)</label>
       <input class="input-field" type="number" ng-model="vm.model.value">
     </div>
     <div class="form-control">
@@ -25,13 +25,15 @@
     </thead>
       <tr ng-repeat="investment in vm.investments">
         <td>{{investment.name}}</td>
-        <td>{{investment.profit}}</td>
-        <td>{{investment.total}}</td>
+        <td>R$ {{investment.profit}}</td>
+        <td>R$ {{investment.total}}</td>
       </tr>
     </table>
-
+<div class="chart-container">
     <canvas id="bar" class="chart chart-bar"
       chart-data="vm.chart.data" chart-labels="vm.chart.labels">
     </canvas>
+
+</div>
   </div>
 </div>

@@ -23,10 +23,17 @@
   text-align: center
 }
 
+.results {
+  margin-top: 4rem;
+  .table, .chart-container {
+    width: calc(50% - 4rem) ;
+    float: left;
+    margin: 2rem;
+  }
+}
+
 .table {
   font-size: 1.6rem;
-  width: 100%;
-  margin: 3rem;
   border-collapse: separate;
   border-spacing: 0;
   thead {

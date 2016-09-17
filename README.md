@@ -37,6 +37,9 @@ Realmente é !  Ele é baseado em alguns outros gulps que fiz para angular e alg
 ### Modificações
 Tive que criar uma nova API, em um dominio meu do Apiary, pois ao tentar renderizar o JSON com comentários, ele retornava erros ao renderizar
 
+## Calculo
+Eu acredito que o calculo que realizei para trazer o retorno do investimento não esteja correto, precisava entender um pouco melhor como fazer esses calculos para dar 100% de certeza
+
 ## Sobre o usuario que está realizando o teste.
 Como eu não queria deixar publico que estava realizando esse teste, criei essa conta para isso.
 Você pode me encontrar em @herberthenrique

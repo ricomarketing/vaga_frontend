@@ -7,8 +7,8 @@
       <input class="input-field" type="number" ng-model="vm.model.value">
     </div>
     <div class="form-control">
-      <label class="field-label" for="">Em quantos dias deseja </label>
-      <input class="input-field" type="text"  ng-model="vm.model.days">
+      <label class="field-label" for="">Em quantos dias deseja receber?</label>
+      <rzslider rz-slider-model="vm.model.days" rz-slider-options="vm.sliderOptions"></rzslider>
     </div>
     <div class="form-action">
       <button class="btn-default" type="button" ng-click="vm.calculate()">Buscar as melhores aplicações!</button>
@@ -29,5 +29,9 @@
         <td>{{investment.total}}</td>
       </tr>
     </table>
+
+    <canvas id="bar" class="chart chart-bar"
+      chart-data="data" chart-labels="labels">
+    </canvas>
   </div>
 </div>

@@ -13,6 +13,9 @@
     vm.indexes = {};
     vm.calcDone = false;
     vm.model = {};
+    vm.model.days = 0;
+    vm.model.maxDate = 365 * 2; //dois anos
+    vm.sliderOptions = {};
 
     vm.calculate = calculate;
 
@@ -21,12 +24,24 @@
     function activate() {
       getTreasuries();
       getIndexes();
+      configureSlider();
     }
 
     function getTreasuries() {
       treasuryService.getAll().then(function(data) {
         vm.treasuries = data;
       });
+    }
+
+    function configureSlider() {
+      vm.sliderOptions = {
+        floor: 0,
+        ceil: vm.model.maxDate,
+        step: 30,
+        minLimit: 0,
+        maxLimit: vm.model.maxDate
+      }
+
     }
 
     function getIndexes() {
@@ -40,12 +55,12 @@
 
       var days = parseFloat(vm.model.days);
       var investmentValue = parseFloat(vm.model.value);
-      if(!vm.model.value || investmentValue <= 0) {
+      if (!vm.model.value || investmentValue <= 0) {
         toastr.warning('Preencha o valor de investimento');
         return;
       }
 
-      if(!vm.model.days || days <= 0) {
+      if (!vm.model.days || days <= 0) {
         toastr.warning('Preencha o tempo de investimento');
         return;
       }
@@ -65,7 +80,7 @@
         return t;
       });
 
-      vm.investments.sort(function(a, b){
+      vm.investments.sort(function(a, b) {
         return a.numberProfit - b.numberProfit;
       }).reverse();
 

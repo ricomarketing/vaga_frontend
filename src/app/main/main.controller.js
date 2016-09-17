@@ -16,6 +16,10 @@
     vm.model.days = 0;
     vm.model.maxDate = 365 * 2; //dois anos
     vm.sliderOptions = {};
+    vm.chart = {
+      data: [],
+      labels: []
+    }
 
     vm.calculate = calculate;
 
@@ -68,7 +72,6 @@
       vm.investments = vm.treasuries.filter(function(t) {
         return investmentValue >= t.minimumValue;
       })
-      console.log('investments', vm.investments);
 
       vm.investments = vm.investments.map(function(t) {
         var investmentTax = t.currentInterestRate + vm.indexes[t.index.name];
@@ -84,7 +87,17 @@
         return a.numberProfit - b.numberProfit;
       }).reverse();
 
+      findTopFiveAndCreateChart();
       vm.calcDone = true;
+    }
+
+    function findTopFiveAndCreateChart() {
+      var topFive = angular.copy(vm.investments).slice(0, 5);
+
+      vm.chart.labels = topFive.map(function(i) {
+        return i.name });
+      vm.chart.data = topFive.map(function(i) {
+        return i.total });
     }
 
   }

@@ -1,6 +1,24 @@
 #vigilant octo
 Esse nome foi gerado pelo github depois de eu perder 15 minutos pensando em um bom nome.
-Nesse README eu vou descrever tudo que pensei durante a criação desse projeto :)
+Nesse README eu vou descrever tudo que pensei durante a criação desse projeto e como executa-lo :)
+
+##Instalação
+### Prerequisites
+
+- [Node.js and npm](nodejs.org) Node >= 4.x.x, npm >= 2.x.x
+
+```sh
+  npm install -g gulp-cli
+  npm install -g bower
+  npm install -g bower-npm-resolver
+  npm install 
+  bower install
+```sh
+
+1. Use `gulp serve` para iniciar um servidor local de desenvolvimento
+2. Use `gulp build` para gerar a pasta build para produção
+
+
 
 ## Arquitetura CSS / SASS
 Eu resolvi deixar que cada pequeno módulo do CSS fosse um arquivo SASS separado e que ele ficasse na pasta do módulo junto com o controller e a view.

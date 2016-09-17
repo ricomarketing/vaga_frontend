@@ -9,7 +9,12 @@ exports.paths = {
 };
 exports.wiredep = {
   exclude: [/jquery/],
-  directory: 'bower_components'
+  directory: 'bower_components',
+  overrides: {
+    "chart.js": {
+      "main": ["dist/Chart.min.js"]
+    }
+  }
 };
 
 /**

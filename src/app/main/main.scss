@@ -22,3 +22,26 @@
 .form-action {
   text-align: center
 }
+
+.table {
+  font-size: 1.6rem;
+  width: 100%;
+  margin: 3rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  thead {
+    font-weight: 700;
+    text-align: left;
+  }
+  td,
+  tr {
+    padding: 15px 5px;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+  th {
+    border-bottom: 1px solid $divider-color;
+    padding-bottom: 10px;
+  }
+}

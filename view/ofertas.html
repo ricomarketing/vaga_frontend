@@ -1,0 +1,49 @@
+<div id="ofertas">
+	<table id="tabela">
+		<caption>
+			{{app}}
+			<span id="indices">
+				SELIC:&nbsp&nbsp {{txSELIC | mult100}} %<br>
+				IPCA:&nbsp&nbsp {{txIPCA | mult100}} %
+			</span>
+
+			<span id="investimento" ng-show="tempoInvest > 0">
+				Valor a investir:&nbsp&nbsp {{valorInvest | currency}}<br>
+				Tempo de investimento:&nbsp&nbsp {{tempoInvest}} meses
+			</span>			
+		</caption>
+
+		<tr>
+			<th>Produto</th>
+			<th>Valor Compra (por unidade)</th>		
+			<th>Valor mínimo de Compra</th>		
+			<th>Tx Anual (sem indexador)</th>		
+			<th>Indexador</th>				
+			<th>Taxa Mensal</th>					
+			<th>Data Lançamento</th>		
+			<th>Data Vencimento</th>	
+			<th>Valor de Resgate</th>			
+			<th>Rentabilidade</th>
+		</tr>
+
+		<tr ng-repeat="of in ofertas | orderBy:'rentabilidade':!reverse">
+			<td id="nome">{{of.name}}</td>
+			<td>{{of.currentUnitValue | currency}}</td>			
+			<td>{{of.minimumValue | currency}}</td>			
+			<td>{{of.currentInterestRate}} %</td>	
+			<td>{{of.index.name}}</td>			
+			<td>{{of.txJurosMes}} %</td>		
+			<td>{{of.issueDate | date:'dd/MM/yyyy'}}</td>			
+			<td>{{of.maturityDate | date:'dd/MM/yyyy'}}</td>
+			<td>{{of.vlrResgate | currency}}</td>	
+			<td>{{of.rentabilidade | currency}}</td>		
+		</tr>
+	</table>
+	<br>
+	<a href="#investimento" id="botaoFazer" class="btn btn-primary">Simular novo Valor</a>
+
+    <div id="grafico" ng-show="tempoInvest > 0" ng-controller="hcChartCtrl">    
+        <hc-chart options="chartOptions"></hc-chart>       <!-- diretiva de graficoDiretive.js -->                   
+    </div>       
+
+</div>

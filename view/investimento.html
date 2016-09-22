@@ -1,0 +1,23 @@
+<div>
+	<h2>Simulação de Novo Investimento</h2>
+	<br><br>
+	<h6>Obs.: Todos os campos são obrigatórios.</h6>
+	<br>
+
+	<form name="formInvest">
+		<p><label>Valor a investir: R$ </label>
+			<input type="text" class="form-campo" ng-model="invest.valor" name="avalor" min="1" ng-required="true"
+			placeholder="somente dígitos" autofocus> ,00
+		</p>
+
+		<p><label>Tempo de Investimento: </label>
+			<input type="number" class="form-campo" ng-model="invest.tempo" name="atempo" min="30" max="720" step="30"  
+			ng-required="true" placeholder="múltiplos de 30, máx. 720"> dias
+		</p>
+	</form>
+
+	<br><br>
+	<button class="btn btn-primary" ng-click="simular(invest)"
+			 ng-disabled="formInvest.$invalid || formInvest.atempo.$error.number">Simular</button>
+	<a href="#/ofertas.html" class="btn btn-primary">Voltar</a>	
+</div>

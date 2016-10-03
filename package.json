@@ -1,0 +1,23 @@
+{
+  "name": "thamirys_oliveira",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular-chart.js": "^1.0.3",
+    "angular-money-directive": "^1.2.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify": "0.0.14",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Teste para vaga Front-End AngularJS</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+		<script src="https://code.angularjs.org/1.5.0-rc.2/angular.min.js"></script>
+		<script type="text/javascript" src="dist/dist.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="src/angular-money-directive.min.js"></script>
+		<script type="text/javascript" src="src/chart.min.js"></script>
+		<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+		<link type="text/css" href="css/estilo.css" rel="stylesheet"/>
+	</head>
+
+	<body ng-app="principal" ng-controller="RentabilidadeController">
+
+		<div id="conteudo">
+
+			<form name="frmInvestimento" ng-submit="calcRentabilidade(tempoInvestimento, valorInvestido)">
+				<label>Tempo de investimento</label>
+				<input type="number" name="tempoInvestimento" min="30" max="720" step="30" ng-model="tempoInvestimento" required />
+
+				<label>Valor investido</label>
+				<input type="text" name="valorInvestido" ng-model="valorInvestido" money required />
+
+				<button type="submit">Enviar</button>
+			</form>
+
+			<h2>Produtos Tesouro Direto</h2>
+
+			<table>
+				<thead>
+					<th>Nome</th>
+					<th>Tipo</th>
+					<th>Índice de mercado</th>
+					<th>Rentabilidade</th>
+					<th>Valor de compra da unidade</th>
+					<th>Valor mínimo de compra</th>
+					<th>Data de lançamento</th>
+					<th>Data de vencimento</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="t in treasuries | orderBy:'-currentInterestRate'">
+						<td>{{ t.name }}</td>
+						<td>{{ t.type.name }}</td>
+						<td>{{ t.index.name }}</td>
+						<td>{{ t.currentInterestRate | currency: "" : 2 }}</td>
+						<td>{{ t.currentUnitValue | currency: "R$ " : 2 }}</td>
+						<td>{{ t.minimumValue | currency: "R$ " : 2 }}</td>
+						<td>{{ t.issueDate | date: 'dd/MM/yyyy' }}</td>
+						<td>{{ t.maturityDate | date: 'dd/MM/yyyy' }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div id="grafico" ng-show="visible">
+				<h2 ng-show="visible">Gráfico</h2>
+				<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series"></canvas>
+			</div>
+
+			<div id="legendas" ng-show="visible">
+				<h4>Legenda</h4>
+				<ul>
+					<li ng-repeat="l in legendas">{{ l }}</li>
+				</ul>
+			</div>
+			<br class="clear"/>
+		</div>
+	</body>
+</html>

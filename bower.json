@@ -1,0 +1,7 @@
+{
+  "name": "rico-com-vc",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angularjs-slider": "^5.5.1"
+  }
+}

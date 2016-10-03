@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-br" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Rico - Plataforma de Investimentos</title>
+    <link rel="stylesheet" type="text/css" href="dist/bundle.css" />
+    <script src="dist/bundle.js"></script>
+  </head>
+  <body ng-controller="investimentos">
+    <h1>Simulador de Investimentos</h1>
+
+    <form>
+      <div>
+        <label for="tempo">Selecione o tempo de investimento (em dias):</label>
+        <rzslider id="tempo" rz-slider-model="slider.value" rz-slider-options="slider.options"></rzslider>
+      </div>
+      <div>
+        <label for="valor">Digite o valor a ser investido (em reais):</label>
+        <input id="valor" type="number" ng-model="valor">
+      </div>
+      <button ng-click="atualizarRentabilidade()">Simular!</button>
+    </form>
+
+    <table id="produtos">
+      <thead>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Indexador</th>
+          <th>Compra mínima</th>
+          <th>Rendimento anual</th>
+          <th>Vencimento</th>
+          <th>Rentabilidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in treasury">
+          <td>{{item.name}}</td>
+          <td>{{item.index.name}}</td>
+          <td>{{formataDinheiro(item.minimumValue)}}</td>
+          <td>{{item.currentInterestRate}} %</td>
+          <td>{{formataData(item.maturityDate)}}</td>
+          <td>{{item.rentabilidade ? item.rentabilidade + ' %' : '-'}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <canvas id="grafico"></canvas>
+  </body>
+</html>

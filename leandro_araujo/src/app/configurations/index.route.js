@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('leandroAraujo')
+    .module('rico')
     .config(routerConfig);
 
   /** @ngInject */

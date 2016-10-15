@@ -3,16 +3,23 @@
   'use strict';
 
   angular
-    .module('leandroAraujo')
+    .module('rico')
     .constant('API', {
-      indexes: {
-        method: 'GET',
-        url: 'https://private-anon-2dc5af8bab-ricocomvc.apiary-mock.com/indexes'
+      'INDEXES': {
+        'METHOD': 'GET',
+        'URL': 'https://private-anon-2dc5af8bab-ricocomvc.apiary-mock.com/indexes'
       },
-      treasury: {
-        method: 'GET',
-        url: 'https://private-anon-2dc5af8bab-ricocomvc.apiary-mock.com/treasury'
+      'TREASURY': {
+        'METHOD': 'GET',
+        'URL': 'https://private-anon-2dc5af8bab-ricocomvc.apiary-mock.com/treasury'
       }
+    })
+    .constant('TAXAS', {
+      'CUSTODIA': 0.003,
+      'CORRETORA': 0.001
+    })
+    .constant('GERAL', {
+      'DIAS_ANO': 254
     });
 
 })();

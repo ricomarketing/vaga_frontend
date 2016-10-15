@@ -1,5 +1,5 @@
 {
-  "name": "leandroAraujo",
+  "name": "rico",
   "version": "0.0.0",
   "dependencies": {
     "angular-animate": "~1.5.3",
@@ -14,7 +14,8 @@
     "angular-toastr": "~1.5.0",
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
-    "angular": "~1.5.3"
+    "angular": "~1.5.3",
+    "angularjs-slider": "^5.5.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

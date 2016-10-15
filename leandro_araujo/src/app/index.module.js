@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('leandroAraujo',
+    .module('rico',
     [
       'ngAnimate',
       'ngCookies',
@@ -11,7 +11,8 @@
       'ngMessages',
       'ngAria',
       'ngResource',
-      'ui.router'
+      'ui.router',
+      'rzModule'
     ]);
 
 })();

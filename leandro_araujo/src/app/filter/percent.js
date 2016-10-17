@@ -8,8 +8,6 @@
   /** @ngInject */
   function percent() {
     return function(input, nominal) {
-      console.log(input);
-
       if( input ) {
         var input = input;
 

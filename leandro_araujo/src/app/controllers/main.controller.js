@@ -37,8 +37,6 @@
       vm.treasuries = response.data;
     })
 
-
-
     // retorna a taxa paga em cima do valor investido
     function calcularTaxaDoInvestimento(valorInvestido, taxaCorretora) {
       return ( valorInvestido * taxaCorretora );
@@ -46,7 +44,7 @@
 
     // retorna o valor real investido sem as taxas
     function calcularValorRealInvestido(valorInvestido, taxaInvestimento) {
-      return ( valorInvestido - taxaInvestimento );
+      return ( valorInvestido + taxaInvestimento );
     }
 
     // retorna o valor de resgate no final do tempo investido

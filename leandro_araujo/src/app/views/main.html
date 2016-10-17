@@ -19,9 +19,9 @@
     </div>
   </div>
 
-  Index SELIC: {{ main.index.SELIC }}
+  Index SELIC: {{ ::main.index.SELIC }}
   <br />
-  Index IPCA: {{ main.index.IPCA }}
+  Index IPCA: {{ ::main.index.IPCA }}
 
   <div ng-if="main.treasuries.length > 0 && main.treasuries.length !== ''">
     <table>
@@ -44,16 +44,9 @@
         <tr ng-repeat="item in main.treasuries">
           <td>{{ ::item.id }}</td>
           <td>{{ ::item.name }}</td>
-          <td>
-            {{ (item.type.name == 'LFT' ? 'Selic' : (item.type.name == 'LTN' ? 'Tesouro Prefixado' : (item.type.name == 'NTN-B' ? 'IPCA+' : (item.type.name == 'NTNB PRINC' ? 'IPCA+ +J/6meses' : item.type.name)))) }}
-            ( {{ ::item.type.name }} )
-          </td>
-          <td>
-            {{ ::item.currentInterestRate }}
-          </td>
-          <td>
-            {{ ::item.currentInterestPercentageValue }}
-          </td>
+          <td>{{ ::item.type.name }}</td>
+          <td>{{ ::item.currentInterestRate }}</td>
+          <td>{{ ::item.currentInterestPercentageValue }}</td>
 
           <td>{{ ::item.issueDate | date:'dd/MM/yyyy' }}</td>
           <td>{{ ::item.maturityDate | date:'dd/MM/yyyy' }}</td>

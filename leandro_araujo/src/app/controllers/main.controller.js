@@ -5,10 +5,8 @@
     .module('rico')
     .controller('MainController', MainController);
 
-  MainController.$inject = ['TreasuriesService', 'IndexesService', 'TAXAS', 'GERAL']
-
   /** @ngInject */
-  function MainController(TreasuriesService, IndexesService, TAXAS, GERAL) {
+  function MainController(TreasuriesService, IndexesService, TAXAS, moment) {
     var vm = this;
     vm.index = '';
     vm.treasuries = '';
@@ -27,6 +25,7 @@
           }
       }
     }
+    moment.locale('pt-br');
 
     // recebe indexes
     IndexesService.get().then(function success(response) {
@@ -37,6 +36,8 @@
     TreasuriesService.get().then(function success(response) {
       vm.treasuries = response.data;
     })
+
+
 
     // retorna a taxa paga em cima do valor investido
     function calcularTaxaDoInvestimento(valorInvestido, taxaCorretora) {
@@ -50,12 +51,12 @@
 
     // retorna o valor de resgate no final do tempo investido
     function calcularValorNoRegaste(valorRealInvestido, taxaSelic, tempoInvestimento) {
-      return ( valorRealInvestido * Math.pow((1 + taxaSelic ), (tempoInvestimento / GERAL.DIAS_ANO)) );
+      return ( valorRealInvestido * Math.pow((1 + taxaSelic ), (tempoInvestimento / 252)) );
     }
 
     // retorna rentabilidade no periodo de investimento
     function calcularRentabilidade(valorResgate, valorInvestido, tempoInvestimento) {
-      return ( Math.pow((valorResgate / valorInvestido), (GERAL.DIAS_ANO / tempoInvestimento)) - 1 );
+      return ( Math.pow((valorResgate / valorInvestido), (252 / tempoInvestimento)) - 1 );
     }
   }
 })();

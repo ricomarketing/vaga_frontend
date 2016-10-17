@@ -5,8 +5,6 @@
     .module('rico')
     .service('IndexesService', IndexesService);
 
-  IndexesService.$inject = ['$http', 'API'];
-
   /** @ngInject */
   function IndexesService($http, API) {
     var vm = this;

@@ -5,8 +5,6 @@
     .module('rico')
     .service('TreasuriesService', TreasuriesService);
 
-  TreasuriesService.$inject = ['$http', 'API'];
-
   /** @ngInject */
   function TreasuriesService($http, API) {
     var vm = this;

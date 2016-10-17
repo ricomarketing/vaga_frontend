@@ -4,6 +4,7 @@
 
   angular
     .module('rico')
+    .constant('moment', moment)
     .constant('API', {
       'INDEXES': {
         'METHOD': 'GET',
@@ -17,9 +18,6 @@
     .constant('TAXAS', {
       'CUSTODIA': 0.003,
       'CORRETORA': 0.001
-    })
-    .constant('GERAL', {
-      'DIAS_ANO': 254
     });
 
 })();

@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(TreasuriesService, IndexesService, TAXAS, moment) {
+  function MainController(TreasuriesService, IndexesService, TAXAS, moment, momentBusiness) {
     var vm = this;
     vm.index = '';
     vm.treasuries = '';
@@ -35,7 +35,23 @@
     // recebe tesouros
     TreasuriesService.get().then(function success(response) {
       vm.treasuries = response.data;
+
+      criarListaTesouros( response.data );
     })
+
+    function criarListaTesouros(tesouros) {
+      tesouros.forEach( function(tesouro, index) {
+        //console.log(tesouro);
+
+        var issueDate = moment(tesouro.issueDate, 'YYYY-MM-DD');
+        var maturityDate = moment(tesouro.maturityDate, 'YYYY-MM-DD');
+
+        console.log( tesouro.issueDate + ': ' + issueDate);
+        console.log( tesouro.maturityDate + ': ' + maturityDate);
+        console.log( maturityDate.diff(issueDate, 'days') );
+        console.log( momentBusiness.weekDays(issueDate, maturityDate) );
+      } );
+    }
 
     // retorna a taxa paga em cima do valor investido
     function calcularTaxaDoInvestimento(valorInvestido, taxaCorretora) {

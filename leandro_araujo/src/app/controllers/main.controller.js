@@ -8,13 +8,12 @@
   /** @ngInject */
   function MainController(TreasuriesService, IndexesService, TAXAS, moment, momentBusiness) {
     var vm = this;
-    vm.index = '';
-    vm.treasuries = '';
+    vm.mostraTabela = false;
     vm.sliderConfigs = {
       minValue: 30,
       options: {
           floor: 30,
-          ceil: 30*12*2,
+          ceil: 365*2,
           step: 30,
           minRange: 30,
           showSelectionBar: true,
@@ -25,7 +24,9 @@
           }
       }
     }
-    moment.locale('pt-br');
+
+    vm.tempoInvestimento = vm.sliderConfigs.minValue;
+    vm.valorInvestido = 0;
 
     // recebe indexes
     IndexesService.get().then(function success(response) {
@@ -35,22 +36,10 @@
     // recebe tesouros
     TreasuriesService.get().then(function success(response) {
       vm.treasuries = response.data;
-
-      criarListaTesouros( response.data );
     })
 
-    function criarListaTesouros(tesouros) {
-      tesouros.forEach( function(tesouro, index) {
-        //console.log(tesouro);
-
-        var issueDate = moment(tesouro.issueDate, 'YYYY-MM-DD');
-        var maturityDate = moment(tesouro.maturityDate, 'YYYY-MM-DD');
-
-        console.log( tesouro.issueDate + ': ' + issueDate);
-        console.log( tesouro.maturityDate + ': ' + maturityDate);
-        console.log( maturityDate.diff(issueDate, 'days') );
-        console.log( momentBusiness.weekDays(issueDate, maturityDate) );
-      } );
+    function retornaOsCincoMaiores(tesouros) {
+      // asasa
     }
 
     // retorna a taxa paga em cima do valor investido
@@ -63,9 +52,14 @@
       return ( valorInvestido + taxaInvestimento );
     }
 
-    // retorna o valor de resgate no final do tempo investido
+    // retorna o valor de resgate no final do tempo investido para SELIC
     function calcularValorNoRegaste(valorRealInvestido, taxaSelic, tempoInvestimento) {
       return ( valorRealInvestido * Math.pow((1 + taxaSelic ), (tempoInvestimento / 252)) );
+    }
+
+    // retorna o valor de resgate no final do tempo investido para IPCA
+    function calcularValorNoRegasteNTN(valorInvestido, taxaIPCA, taxaNaCompra, tempoInvestimento) {
+      return Math.pow( valorInvestido * ((1 + taxaIPCA) * (1 + taxaNaCompra)) , (tempoInvestimento / 252) );
     }
 
     // retorna rentabilidade no periodo de investimento

@@ -15,22 +15,22 @@
 
       <input id="input__valorInvestido"
       name="valorInvestido"
-      type="number" />
+      type="number"
+      ng-model="main.valorInvestido" />
     </div>
   </div>
 
-  Index SELIC: {{ ::main.index.SELIC }}
-  <br />
-  Index IPCA: {{ ::main.index.IPCA }}
+  {{ main.sliderConfigs.minValue }}
+  {{ main.valorInvestido }}
 
-  <div ng-if="main.treasuries.length > 0 && main.treasuries !== ''">
+  <div ng-if="mostraTabela">
     <table>
       <thead>
         <tr>
-          <th>id</th>
+          <th>#</th>
           <th>titulo</th>
           <th>Tipo</th>
-          <th>Taxa de rendimento / ano</th>
+          <th>Taxa de rendimento por ano</th>
           <th>Valor nominal do percentual da taxa</th>
           <th>Lançamento</th>
           <th>Vencimento</th>
@@ -41,8 +41,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in main.treasuries">
-          <td>{{ ::item.id }}</td>
+        <tr id="tesouro__{{ ::item.id }}"
+        ng-repeat="item in main.treasuries">
+          <td>{{ $index }}</td>
           <td>{{ ::item.name }}</td>
           <td>{{ ::item.type.name }}</td>
           <td>{{ ::item.currentInterestRate }}</td>

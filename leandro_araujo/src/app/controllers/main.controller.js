@@ -13,7 +13,7 @@
       minValue: 30,
       options: {
           floor: 30,
-          ceil: 365*2,
+          ceil: 30*12*2,
           step: 30,
           minRange: 30,
           showSelectionBar: true,

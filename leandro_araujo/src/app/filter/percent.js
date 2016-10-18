@@ -9,13 +9,12 @@
   function percent() {
     return function(input, nominal) {
       if( input ) {
-        var input = input;
-
         if( nominal ) {
-          input = (input * 100).toFixed(2);
+          input = (input * 100);
         }
 
-        input = input.toString();
+        input = input.toFixed(2);
+
 
         return input.replace('.', ',') + '%';
       }

@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(TreasuriesService, IndexesService, TAXAS, moment, momentBusiness) {
+  function MainController(TreasuriesService, IndexesService, TAXAS) {
     var vm = this;
     vm.mostraTabela = false;
     vm.sliderConfigs = {

@@ -5,7 +5,6 @@
   angular
     .module('rico')
     .constant('moment', moment)
-    .constant('momentBusiness', momentBusiness)
     .constant('API', {
       'INDEXES': {
         'METHOD': 'GET',

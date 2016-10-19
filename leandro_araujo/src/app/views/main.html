@@ -19,13 +19,12 @@
       ng-model="main.valorInvestido" />
     </div>
 
-    <button>Investir</button>
+    <button ng-click="main.realizarInvestimento(main.valorInvestido, main.sliderConfigs.minValue)">Investir</button>
   </div>
 
-  {{ main.sliderConfigs.minValue }}
-  {{ main.valorInvestido }}
+  <div ng-if="!main.mostraTabela">Carregando</div>
 
-  <div ng-if="mostraTabela">
+  <div ng-if="main.mostraTabela">
     <table>
       <thead>
         <tr>

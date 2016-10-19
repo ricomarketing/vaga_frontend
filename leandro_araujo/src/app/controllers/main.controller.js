@@ -43,22 +43,25 @@
     })*/
 
     function criarLista(tesouros, index) {
-      tesouros.forEach( function(tesouro) {
-        var dataLancamento    = moment(tesouro.issueDate, 'YYYY-MM-DD');
-        var dataLimite        = moment(tesouro.maturityDate, 'YYYY-MM-DD');
-        var tempoInvestimento = momentBusiness.weekDays( dataLancamento, dataLimite );
-
-
-        // nominal a.a
-        var taxaInvestimento  = calcularTaxaInvestimento(tesouro.currentInterestPercentageValue, index.SELIC);
-        var valorResgate      = calcularValorResgate(tesouro.minimumValue, taxaInvestimento, tempoInvestimento / 365);
-
-        // adicionando pra facilitar a ordenacao
-        tesouro.rentabilidade = calcularRentabilidade(tesouro.minimumValue, valorResgate);
-      } );
+      console.log('quase');
 
       if( tesouros.length > 0 && Object.keys(vm.index) .length > 0 ) {
-        console.log( tesouros[0] );
+        console.log('foi');
+
+        tesouros.forEach( function(tesouro) {
+          var dataLancamento    = moment(tesouro.issueDate, 'YYYY-MM-DD');
+          var dataLimite        = moment(tesouro.maturityDate, 'YYYY-MM-DD');
+          var tempoInvestimento = momentBusiness.weekDays( dataLancamento, dataLimite );
+
+          console.log(tempoInvestimento / 365);
+
+          // nominal a.a
+          var taxaInvestimento  = calcularTaxaInvestimento(tesouro.currentInterestPercentageValue, index.SELIC);
+          var valorResgate      = calcularValorResgate(tesouro.minimumValue, taxaInvestimento, tempoInvestimento / 365);
+
+          tesouro.rentabilidade = calcularRentabilidade(tesouro.minimumValue, valorResgate);
+        } );
+
         vm.mostraTabela = !vm.mostraTabela;
       }
     }

@@ -39,11 +39,12 @@
           <th>Valor de compra da unidade</th>
           <th>Quanidade minima de compra</th>
           <th>Valor minimo de compra</th>
+          <th>Rentabilidade</th>
         </tr>
       </thead>
       <tbody>
         <tr id="tesouro__{{ ::item.id }}"
-        ng-repeat="item in main.treasuries">
+        ng-repeat="item in main.treasuries | orderBy:'-rentabilidade' ">
           <td>{{ $index }}</td>
           <td>{{ ::item.name }}</td>
           <td>{{ ::item.type.name }}</td>
@@ -57,6 +58,7 @@
           <td>{{ ::item.currentUnitValue }}</td>
           <td>{{ ::item.minimumQuantity }}</td>
           <td>{{ ::item.minimumValue }}</td>
+          <td>{{ ::item.rentabilidade }}</td>
         </tr>
       </tbody>
     </table>

@@ -1,7 +1,9 @@
 
-<section class="section">
+<div ng-if="!main.mostraView">Carregando</div>
 
-  <div>
+<section class="section"
+ng-if="main.mostraView">
+  <form ng-submit="main.realizarInvestimento(main.valorInvestido, main.sliderConfigs.minValue)">
     <div>
       <label for="input__tempoInvestimento">Tempo de investimento:</label>
 
@@ -19,8 +21,8 @@
       ng-model="main.valorInvestido" />
     </div>
 
-    <button ng-click="main.realizarInvestimento(main.valorInvestido, main.sliderConfigs.minValue)">Investir</button>
-  </div>
+    <button type="submit">Investir</button>
+  </form>
 
   <div ng-if="!main.mostraTabela">Carregando</div>
 

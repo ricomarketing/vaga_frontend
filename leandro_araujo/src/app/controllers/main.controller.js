@@ -31,34 +31,63 @@
       vm.index      = response[0].data;
       vm.treasuries = response[1].data;
 
-      criarLista(vm.treasuries, vm.index);
+      criarLista(vm.treasuries);
     });
 
-    function criarLista(tesouros, index) {
-      if( tesouros.length > 0 && Object.keys(vm.index) .length > 0 ) {
-        tesouros.forEach( function(tesouro) {
-          var dataLancamento    = moment(tesouro.issueDate, 'YYYY-MM-DD');
-          var dataLimite        = moment(tesouro.maturityDate, 'YYYY-MM-DD');
-          var tempoInvestimento = momentBusiness.weekDays( dataLancamento, dataLimite );
-          var valorTaxa        = 0;
+    vm.realizarInvestimento = realizarInvestimento(vm.valorInvestido, vm.sliderConfigs.minValue);
 
-          // nominal a.a
+    function criarLista(tesouros) {
+      if( tesouros.length > 0 && Object.keys(vm.index).length > 0 ) {
+        tesouros.forEach( function(tesouro) {
+          var valorTaxa;
           if(tesouro.index.name == 'IPCA') {
-            valorTaxa = index.IPCA;
-          if(tesouro.index.name == 'SELIC') {
-            valorTaxa = index.SELIC;
+            valorTaxa = vm.index.IPCA;
+          } else if(tesouro.index.name == 'SELIC') {
+            valorTaxa = vm.index.SELIC;
           } else {
             valorTaxa = 0;
           }
 
           var taxaInvestimento  = calcularTaxaInvestimento(tesouro.currentInterestPercentageValue, valorTaxa);
-          var valorResgate      = calcularValorResgate(tesouro.minimumValue, taxaInvestimento, tempoInvestimento / 365);
+          var tempoInvestimento = calcularTempoInvestimento(tesouro.issueDate, tesouro.maturityDate, 'YYYY-MM-DD');
 
-          tesouro.rentabilidade = calcularRentabilidade(tesouro.minimumValue, valorResgate);
+          tesouro.valorResgate  = calcularValorResgate(tesouro.minimumValue, taxaInvestimento, tempoInvestimento / 365);
+          tesouro.rentabilidade = calcularRentabilidade(tesouro.minimumValue, tesouro.valorResgate);
         } );
 
-        vm.mostraTabela = !vm.mostraTabela;
+        vm.mostraTabela = true;
       }
+    }
+
+    function realizarInvestimento(valorAinvestir, tempoAinvestir) {
+      vm.mostraTabela = false;
+
+      if(vm.treasuries.length > 0 && Object.keys(vm.index).length > 0 ) {
+        vm.treasuries.forEach( function(tesouro) {
+          var valorTaxa;
+          if(tesouro.index.name == 'IPCA') {
+            valorTaxa = vm.index.IPCA;
+          } else if(tesouro.index.name == 'SELIC') {
+            valorTaxa = vm.index.SELIC;
+          } else {
+            valorTaxa = 0;
+          }
+
+          var taxaInvestimento  = calcularTaxaInvestimento(tesouro.currentInterestPercentageValue, valorTaxa);
+
+          tesouro.valorResgate  = calcularValorResgate(valorAinvestir, taxaInvestimento, tempoAinvestir);
+          tesouro.rentabilidade = calcularRentabilidade(valorAinvestir, tesouro.valorResgate);
+        } );
+
+        vm.mostraTabela = true;
+      }
+    }
+
+    function calcularTempoInvestimento(dataLancamento, dataLimite, formatoData) {
+      var mmtLancamento = moment(dataLancamento, formatoData);
+      var mmtLimite     = moment(dataLimite, formatoData);
+
+      return momentBusiness.weekDays( mmtLancamento, mmtLimite );
     }
 
     function calcularTaxaInvestimento(taxaTesouro, taxaIndexador) {

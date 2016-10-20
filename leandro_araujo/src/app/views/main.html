@@ -3,7 +3,7 @@
 
 <section class="section"
 ng-if="main.mostraView">
-  <form ng-submit="main.realizarInvestimento(main.valorInvestido, main.sliderConfigs.minValue)">
+  <form ng-submit="main.realizarInvestimento()">
     <div>
       <label for="input__tempoInvestimento">Tempo de investimento:</label>
 
@@ -41,7 +41,9 @@ ng-if="main.mostraView">
           <th>Valor de compra da unidade</th>
           <th>Quanidade minima de compra</th>
           <th>Valor minimo de compra</th>
+
           <th>Rentabilidade</th>
+          <th>Valor no Resgate</th>
         </tr>
       </thead>
       <tbody>
@@ -60,6 +62,8 @@ ng-if="main.mostraView">
           <td>{{ ::item.currentUnitValue }}</td>
           <td>{{ ::item.minimumQuantity }}</td>
           <td>{{ ::item.minimumValue }}</td>
+
+          <td>{{ ::item.valorResgate }}</td>
           <td>{{ ::item.rentabilidade }}</td>
         </tr>
       </tbody>

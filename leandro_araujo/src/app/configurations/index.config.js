@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, $sceDelegateProvider, $httpProvider) {
+  function config($logProvider, $sceDelegateProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 

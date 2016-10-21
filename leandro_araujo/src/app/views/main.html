@@ -3,7 +3,8 @@
 
 <section class="section"
 ng-if="main.mostraView">
-  <form ng-submit="main.realizarInvestimento(main.valorInvestido, main.sliderConfigs.minValue)">
+  <form name="formInvestimento"
+  ng-submit="main.investir(main.valorInvestido, main.sliderConfigs.minValue)">
     <div>
       <label for="input__tempoInvestimento">Tempo de investimento:</label>
 
@@ -18,62 +19,53 @@ ng-if="main.mostraView">
       <input id="input__valorInvestido"
       name="valorInvestido"
       type="number"
+      min="{{ main.valorMinimo }}"
+      step="0.01"
       ng-model="main.valorInvestido" />
     </div>
 
     <button type="submit">Investir</button>
   </form>
 
-{{ main.valorMinimo }}
+  <table ng-if="main.mostraTabela">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>titulo</th>
+        <th>Tipo</th>
+        <th>Taxa de rendimento por ano</th>
+        <th>Valor nominal do percentual da taxa</th>
+        <th>Lançamento</th>
+        <th>Vencimento</th>
+        <th>Valor quantidade minima</th>
+        <th>Valor de compra da unidade</th>
+        <th>Quanidade minima de compra</th>
+        <th>Valor minimo de compra</th>
 
-  <div ng-if="main.mostraTabela">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>titulo</th>
-          <th>Tipo</th>
-          <th>Taxa de rendimento por ano</th>
-          <th>Valor nominal do percentual da taxa</th>
-          <th>Lançamento</th>
-          <th>Vencimento</th>
-          <th>Valor quantidade minima</th>
-          <th>Valor de compra da unidade</th>
-          <th>Quanidade minima de compra</th>
-          <th>Valor minimo de compra</th>
+        <th>Rentabilidade</th>
+        <th>Valor no Resgate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="tesouro__{{ ::item.id }}"
+      ng-repeat="item in main.listaTesouros | orderBy:'-rentabilidade' ">
+        <td>{{ $index }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.type.name }}</td>
+        <td>{{ item.currentInterestRate }}</td>
+        <td>{{ item.currentInterestPercentageValue }}</td>
 
-          <th>Rentabilidade</th>
-          <th>Valor no Resgate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="tesouro__{{ ::item.id }}"
-        ng-repeat="item in main.treasuries | orderBy:'-rentabilidade' ">
-          <td>{{ $index }}</td>
-          <td>{{ ::item.name }}</td>
-          <td>{{ ::item.type.name }}</td>
-          <td>{{ ::item.currentInterestRate }}</td>
-          <td>{{ ::item.currentInterestPercentageValue }}</td>
+        <td>{{ item.issueDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.maturityDate | date:'dd/MM/yyyy' }}</td>
 
-          <td>{{ ::item.issueDate | date:'dd/MM/yyyy' }}</td>
-          <td>{{ ::item.maturityDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ item.value }}</td>
+        <td>{{ item.currentUnitValue }}</td>
+        <td>{{ item.minimumQuantity }}</td>
+        <td>{{ item.minimumValue }}</td>
 
-          <td>{{ ::item.value }}</td>
-          <td>{{ ::item.currentUnitValue }}</td>
-          <td>{{ ::item.minimumQuantity }}</td>
-          <td>{{ ::item.minimumValue }}</td>
-
-          <td>{{ ::item.rentabilidade }}</td>
-          <td>{{ ::item.valorResgate }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        <td>{{ item.rentabilidade }}</td>
+        <td>{{ item.valorResgate }}</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
-
-<!--
-{{ (item.type.name == 'LFT' ? 'Selic' : item.type.name) }}
-{{ (item.type.name == 'LTN' ? 'Tesouro Prefixado' : item.type.name) }}
-{{ (item.type.name == 'NTN-B' ? 'IPCA+' : item.type.name) }}
-{{ (item.type.name == 'NTNB PRINC' ? 'IPCA+ +J/6meses' : item.type.name) }}
--->

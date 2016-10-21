@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(TreasuriesService, IndexesService, TAXAS, moment, momentBusiness, $q) {
+  function MainController(TreasuriesService, IndexesService, $q) {
     var vm = this;
     vm.mostraView = false;
     vm.mostraTabela = false;
@@ -35,10 +35,22 @@
       vm.mostraView = !vm.mostraView;
     });
 
-    vm.realizarInvestimento = function realizarInvestimento(valorAinvestir, tempoAinvestir) {
+    vm.investir = function(valorAinvestir, tempoAinvestir) {
       vm.mostraTabela = false;
 
-      if(vm.treasuries.length > 0 && Object.keys(vm.index).length > 0 ) {
+      if( vm.valorInvestido >= vm.valorMinimo ) {
+        vm.listaTesouros = realizarInvestimento(valorAinvestir, tempoAinvestir);
+
+        cincoMelhoresParaInvestir(vm.listaTesouros);
+
+        vm.mostraTabela = true;
+      }
+    }
+
+    function realizarInvestimento(valorAinvestir, tempoAinvestir) {
+      vm.listaTesouros = [];
+
+      if (vm.treasuries.length > 0 && Object.keys(vm.index).length > 0) {
         vm.treasuries.forEach( function(tesouro) {
           var valorTaxa;
           if(tesouro.index.name == 'IPCA') {
@@ -55,7 +67,7 @@
           tesouro.rentabilidade = calcularRentabilidade(valorAinvestir, tesouro.valorResgate);
         } );
 
-        vm.mostraTabela = true;
+        return vm.treasuries;
       }
     }
 
@@ -71,11 +83,8 @@
       });
     }
 
-    function calcularTempoInvestimento(dataLancamento, dataLimite, formatoData) {
-      var mmtLancamento = moment(dataLancamento, formatoData);
-      var mmtLimite     = moment(dataLimite, formatoData);
-
-      return momentBusiness.weekDays( mmtLancamento, mmtLimite );
+    function cincoMelhoresParaInvestir(tesouros) {
+      console.log(tesouros);
     }
 
     function calcularTaxaInvestimento(taxaTesouro, taxaIndexador) {

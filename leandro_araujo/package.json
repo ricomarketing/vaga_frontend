@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
+    "preinstall": "npm install -g bower",
     "test": "gulp test"
   },
   "devDependencies": {

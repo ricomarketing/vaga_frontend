@@ -27,39 +27,15 @@
     }
 
     $q.all([IndexesService.get(), TreasuriesService.get()]).then(function success(response) {
-      vm.mostraView = !vm.mostraView;
       vm.index      = response[0].data;
       vm.treasuries = response[1].data;
 
-      criarLista(vm.treasuries);
+      vm.valorMinimo = retornaValorMinimo(vm.treasuries);
+
+      vm.mostraView = !vm.mostraView;
     });
 
-    vm.realizarInvestimento = realizarInvestimento(vm.valorInvestido, vm.sliderConfigs.minValue);
-
-    function criarLista(tesouros) {
-      if( tesouros.length > 0 && Object.keys(vm.index).length > 0 ) {
-        tesouros.forEach( function(tesouro) {
-          var valorTaxa;
-          if(tesouro.index.name == 'IPCA') {
-            valorTaxa = vm.index.IPCA;
-          } else if(tesouro.index.name == 'SELIC') {
-            valorTaxa = vm.index.SELIC;
-          } else {
-            valorTaxa = 0;
-          }
-
-          var taxaInvestimento  = calcularTaxaInvestimento(tesouro.currentInterestPercentageValue, valorTaxa);
-          var tempoInvestimento = calcularTempoInvestimento(tesouro.issueDate, tesouro.maturityDate, 'YYYY-MM-DD');
-
-          tesouro.valorResgate  = calcularValorResgate(tesouro.minimumValue, taxaInvestimento, tempoInvestimento / 365);
-          tesouro.rentabilidade = calcularRentabilidade(tesouro.minimumValue, tesouro.valorResgate);
-        } );
-
-        vm.mostraTabela = true;
-      }
-    }
-
-    function realizarInvestimento(valorAinvestir, tempoAinvestir) {
+    vm.realizarInvestimento = function realizarInvestimento(valorAinvestir, tempoAinvestir) {
       vm.mostraTabela = false;
 
       if(vm.treasuries.length > 0 && Object.keys(vm.index).length > 0 ) {
@@ -81,6 +57,18 @@
 
         vm.mostraTabela = true;
       }
+    }
+
+    function retornaValorMinimo(tesouros) {
+      var valores = [];
+
+      tesouros.map(function(tesouro) {
+        valores.push(tesouro.minimumValue);
+      });
+
+      return valores.reduce(function(previous, current) {
+        return (previous < current) ? previous : current;
+      });
     }
 
     function calcularTempoInvestimento(dataLancamento, dataLimite, formatoData) {

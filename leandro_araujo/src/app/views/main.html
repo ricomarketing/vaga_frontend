@@ -3,7 +3,7 @@
 
 <section class="section"
 ng-if="main.mostraView">
-  <form ng-submit="main.realizarInvestimento()">
+  <form ng-submit="main.realizarInvestimento(main.valorInvestido, main.sliderConfigs.minValue)">
     <div>
       <label for="input__tempoInvestimento">Tempo de investimento:</label>
 
@@ -24,7 +24,7 @@ ng-if="main.mostraView">
     <button type="submit">Investir</button>
   </form>
 
-  <div ng-if="!main.mostraTabela">Carregando</div>
+{{ main.valorMinimo }}
 
   <div ng-if="main.mostraTabela">
     <table>
@@ -63,8 +63,8 @@ ng-if="main.mostraView">
           <td>{{ ::item.minimumQuantity }}</td>
           <td>{{ ::item.minimumValue }}</td>
 
-          <td>{{ ::item.valorResgate }}</td>
           <td>{{ ::item.rentabilidade }}</td>
+          <td>{{ ::item.valorResgate }}</td>
         </tr>
       </tbody>
     </table>

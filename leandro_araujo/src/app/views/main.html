@@ -48,8 +48,8 @@ ng-if="main.mostraView">
     </thead>
     <tbody>
       <tr id="tesouro__{{ ::item.id }}"
-      ng-repeat="item in main.listaTesouros | orderBy:'-rentabilidade' ">
-        <td>{{ $index }}</td>
+      ng-repeat="item in main.listaCincoMelhores | orderBy:'-rentabilidade' ">
+        <td>{{ $index+1 }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.type.name }}</td>
         <td>{{ item.currentInterestRate }}</td>

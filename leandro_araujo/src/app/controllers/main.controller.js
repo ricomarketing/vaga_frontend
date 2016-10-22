@@ -41,7 +41,7 @@
       if( vm.valorInvestido >= vm.valorMinimo ) {
         vm.listaTesouros = realizarInvestimento(valorAinvestir, tempoAinvestir);
 
-        cincoMelhoresParaInvestir(vm.listaTesouros);
+        vm.listaCincoMelhores = cincoMelhoresParaInvestir(vm.listaTesouros);
 
         vm.mostraTabela = true;
       }
@@ -84,7 +84,15 @@
     }
 
     function cincoMelhoresParaInvestir(tesouros) {
-      console.log(tesouros);
+      var cincoMelhores = tesouros.slice(0)
+
+      cincoMelhores.sort(function(previous, current) {
+        return previous.rentabilidade < current.rentabilidade;
+      });
+
+      console.log();
+
+      return cincoMelhores.slice(0, 5);
     }
 
     function calcularTaxaInvestimento(taxaTesouro, taxaIndexador) {

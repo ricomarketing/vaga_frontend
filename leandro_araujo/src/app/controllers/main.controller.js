@@ -36,7 +36,7 @@
         fontName: 'Open Sans',
         height: '100%',
         width: '100%',
-        tooltip: { trigger: 'none' },
+        tooltip: { trigger: 'none' }
       }
     }
 

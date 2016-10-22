@@ -60,9 +60,8 @@ ng-if="main.mostraView">
           <th class="text-center" width="10">#</th>
           <th class="text-left">Título</th>
           <th>Tx. de Rendimento</th>
-          <th>Val. Min. de Compra</th>
-          <th>Rentab.</th>
-          <th>Val. no Resgate</th>
+          <th>Rentabilidade</th>
+          <th>Rendimento</th>
         </tr>
       </thead>
 
@@ -72,7 +71,6 @@ ng-if="main.mostraView">
           <th class="text-center">{{ $index+1 }}</td>
           <td class="text-left">{{ item.name }}</td>
           <td>{{ item.currentInterestRate | percent }} a.a</td>
-          <td class="nowrap">{{ item.minimumValue | currency:'R$ ' }}</td>
           <td>{{ item.rentabilidade | percent }}</td>
           <td class="nowrap">{{ item.valorResgate | currency:'R$ ' }}</td>
         </tr>

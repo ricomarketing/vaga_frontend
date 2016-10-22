@@ -20,3 +20,6 @@ Ou criar um build do projeto com o comando:
 ```
 gulp build
 ```
+
+
+Autor: Leandro Araújo (@leandroc)

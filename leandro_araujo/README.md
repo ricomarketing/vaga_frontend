@@ -9,13 +9,13 @@ Logo após, utlizar o seguinte comando na linha de comando para instalar as depe
 npm install
 ```
 
-E então rodar o projeto com:
+E então rodar o projeto com o seguinte comento:
 
 ```
 gulp serve
 ```
 
-Ou criar um build do projeto com:
+Ou criar um build do projeto com o comando:
 
 ```
 gulp build

@@ -3,7 +3,7 @@
 
 Para rodar o teste será necessário fazer a instalação do node.js (https://nodejs.org).
 
-Logo após fazer a instalação do projeto utlizando o comando seguinte na linha de comando:
+Logo após, utlizar o seguinte comando na linha de comando para instalar as depedências do projeto:
 
 ```
 npm install

@@ -30,7 +30,7 @@
     vm.graficoConfig = {
       type: 'BarChart',
       options: {
-        title: null,
+        title: 'Comparação das rentabilidades dos tesouros',
         colors: ['#ef8a32'],
         backgroundColor: 'none',
         fontName: 'Open Sans',
@@ -84,7 +84,7 @@
 
           var taxaInvestimento  = calcularTaxaInvestimento(tesouro.currentInterestPercentageValue, valorTaxa);
 
-          tesouro.valorResgate  = calcularValorResgate(valorAinvestir, taxaInvestimento, tempoAinvestir);
+          tesouro.valorResgate  = calcularValorResgate(valorAinvestir, taxaInvestimento, tempoAinvestir / 365);
           tesouro.rentabilidade = calcularRentabilidade(valorAinvestir, tesouro.valorResgate);
         } );
 

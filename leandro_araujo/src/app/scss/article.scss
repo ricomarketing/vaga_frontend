@@ -1,0 +1,25 @@
+.article {
+  @include clearfix;
+
+  &__title {
+    color: $title-color;
+    font-size: 1.25rem;
+    font-family: $title-font-family;
+    text-transform: uppercase;
+
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  @media ( min-width: 990px ) {
+    .table {
+      width: 60%;
+      float: left;
+    }
+
+    .chart {
+      width: 40%;
+      float: right;
+    }
+  }
+}

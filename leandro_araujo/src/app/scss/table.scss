@@ -1,0 +1,29 @@
+.table {
+  border-spacing: 0;
+  min-height: 215px;
+  width: 100%;
+
+  caption {
+    color: lighten($font-color, 10);
+    font-size: .8rem;
+    text-align: left;
+    padding-bottom: .5rem;
+  }
+
+  th { color: $title-color; }
+
+  th, td {
+    text-align: right;
+    padding: .5rem;
+  }
+
+  thead th {
+    border-bottom: 2px solid;
+    vertical-align: bottom;
+  }
+
+  tbody th,
+  tbody td { border-bottom: 1px solid }
+
+  tbody tr:hover { background-color: darken($body-bg, 5); }
+}

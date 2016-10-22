@@ -1,22 +1,31 @@
 
-<div ng-if="!main.mostraView">Carregando</div>
+<div class="loading" ng-if="!main.mostraView">
+  <div class="spinner">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
 
 <section class="section"
 ng-if="main.mostraView">
-  <form name="formInvestimento"
+  <form class="form"
+  name="formInvestimento"
   ng-submit="main.investir(main.valorInvestido, main.sliderConfigs.minValue)">
-    <div>
-      <label for="input__tempoInvestimento">Tempo de investimento:</label>
+    <a class="rico__logo"
+    title="Ir para o site da Rico.com.vc"
+    href="https://www.rico.com.vc/">
+      <img alt="Marca da Rico.com.vc"
+      src="assets/images/rico-logo.png">
+    </a>
 
-      <rzslider id="input__tempoInvestimento"
-      rz-slider-model="main.sliderConfigs.minValue"
-      rz-slider-options="main.sliderConfigs.options"></rzslider>
-    </div>
+    <h1 class="form__title">Simulador de Investimento</h1>
 
-    <div>
-      <label for="input__valorInvestido">Valor investido:</label>
+    <div class="form__group"
+    ng-class="{'form__group--error' : main.preencherValor}">
+      <label for="input__valorInvestido">Valor a ser investido:</label>
 
-      <input id="input__valorInvestido"
+      <input class="form__control"
+      id="input__valorInvestido"
       name="valorInvestido"
       type="number"
       min="{{ main.valorMinimo }}"
@@ -24,48 +33,55 @@ ng-if="main.mostraView">
       ng-model="main.valorInvestido" />
     </div>
 
-    <button type="submit">Investir</button>
+    <div class="form__group">
+      <label for="input__tempoInvestimento">Tempo de investimento:</label>
+
+      <rzslider id="input__tempoInvestimento"
+      rz-slider-model="main.sliderConfigs.minValue"
+      rz-slider-options="main.sliderConfigs.options"></rzslider>
+    </div>
+
+    <button class="form__button"
+    type="submit">Investir</button>
   </form>
 
-  <table ng-if="main.mostraTabela">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>titulo</th>
-        <th>Tipo</th>
-        <th>Taxa de rendimento por ano</th>
-        <th>Valor nominal do percentual da taxa</th>
-        <th>Lançamento</th>
-        <th>Vencimento</th>
-        <th>Valor quantidade minima</th>
-        <th>Valor de compra da unidade</th>
-        <th>Quanidade minima de compra</th>
-        <th>Valor minimo de compra</th>
+  <article class="article" ng-if="main.mostraTabela">
+    <h2 class="article__title">Melhores tesouros para se investir</h2>
 
-        <th>Rentabilidade</th>
-        <th>Valor no Resgate</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="tesouro__{{ ::item.id }}"
-      ng-repeat="item in main.listaCincoMelhores | orderBy:'-rentabilidade' ">
-        <td>{{ $index+1 }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.type.name }}</td>
-        <td>{{ item.currentInterestRate }}</td>
-        <td>{{ item.currentInterestPercentageValue }}</td>
+    <table class="table">
+      <caption>
+        Cálculo aproximado utilizando {{ main.listaValorAinvestir | currency:"R$ " }} investido em
 
-        <td>{{ item.issueDate | date:'dd/MM/yyyy' }}</td>
-        <td>{{ item.maturityDate | date:'dd/MM/yyyy' }}</td>
+        {{ main.listaTempoAinvestir }} dias
+      </caption>
 
-        <td>{{ item.value }}</td>
-        <td>{{ item.currentUnitValue }}</td>
-        <td>{{ item.minimumQuantity }}</td>
-        <td>{{ item.minimumValue }}</td>
+      <thead>
+        <tr>
+          <th class="text-center" width="10">#</th>
+          <th class="text-left">Título</th>
+          <th>Tx. de Rendimento</th>
+          <th>Val. Min. de Compra</th>
+          <th>Rentab.</th>
+          <th>Val. no Resgate</th>
+        </tr>
+      </thead>
 
-        <td>{{ item.rentabilidade }}</td>
-        <td>{{ item.valorResgate }}</td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr id="tesouro__{{ ::item.id }}"
+        ng-repeat="item in main.listaCincoMelhores | orderBy:'-rentabilidade' ">
+          <th class="text-center">{{ $index+1 }}</td>
+          <td class="text-left">{{ item.name }}</td>
+          <td>{{ item.currentInterestRate | percent }} a.a</td>
+          <td class="nowrap">{{ item.minimumValue | currency:'R$ ' }}</td>
+          <td>{{ item.rentabilidade | percent }}</td>
+          <td class="nowrap">{{ item.valorResgate | currency:'R$ ' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart"
+    ng-if="main.mostraGrafico">
+      <div google-chart chart="main.graficoConfig"></div>
+    </div>
+  </article>
 </section>

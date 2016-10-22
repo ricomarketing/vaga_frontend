@@ -12,7 +12,8 @@
       'ngAria',
       'ngResource',
       'ui.router',
-      'rzModule'
+      'rzModule',
+      'googlechart'
     ]);
 
 })();

@@ -10,6 +10,8 @@
     var vm = this;
     vm.mostraView = false;
     vm.mostraTabela = false;
+    vm.mostraGrafico = false;
+    vm.preencherValor = false;
     vm.sliderConfigs = {
       minValue: 30,
       options: {
@@ -25,6 +27,18 @@
           }
       }
     }
+    vm.graficoConfig = {
+      type: 'BarChart',
+      options: {
+        title: null,
+        colors: ['#ef8a32'],
+        backgroundColor: 'none',
+        fontName: 'Open Sans',
+        height: '100%',
+        width: '100%',
+        tooltip: { trigger: 'none' },
+      }
+    }
 
     $q.all([IndexesService.get(), TreasuriesService.get()]).then(function success(response) {
       vm.index      = response[0].data;
@@ -33,17 +47,24 @@
       vm.valorMinimo = retornaValorMinimo(vm.treasuries);
 
       vm.mostraView = !vm.mostraView;
-    });
+    })
 
     vm.investir = function(valorAinvestir, tempoAinvestir) {
       vm.mostraTabela = false;
 
       if( vm.valorInvestido >= vm.valorMinimo ) {
         vm.listaTesouros = realizarInvestimento(valorAinvestir, tempoAinvestir);
-
         vm.listaCincoMelhores = cincoMelhoresParaInvestir(vm.listaTesouros);
+        vm.graficoConfig.data = criarGrafico(vm.listaCincoMelhores);
 
+        vm.listaValorAinvestir = valorAinvestir;
+        vm.listaTempoAinvestir = tempoAinvestir;
+
+        vm.preencherValor = false;
         vm.mostraTabela = true;
+        vm.mostraGrafico = true;
+      } else {
+        vm.preencherValor = true;
       }
     }
 
@@ -90,9 +111,26 @@
         return previous.rentabilidade < current.rentabilidade;
       });
 
-      console.log();
-
       return cincoMelhores.slice(0, 5);
+    }
+
+    function criarGrafico(cincoMelhores) {
+      var valores = cincoMelhores.map(function(tesouro, index) {
+        return {
+          c: [
+            {v: '#' + (index + 1) },
+            {v: tesouro.rentabilidade }
+          ]
+        }
+      });
+
+      return {
+        "cols": [
+          {id: "tesouro", label: "Tesouros", type: "string"},
+          {id: "rentabilidade", label: "Rentabilidade", type: "number"}
+        ],
+        "rows": valores
+      }
     }
 
     function calcularTaxaInvestimento(taxaTesouro, taxaIndexador) {

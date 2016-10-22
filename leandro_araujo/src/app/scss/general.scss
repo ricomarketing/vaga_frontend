@@ -8,6 +8,29 @@ html {
 }
 
 body {
+  background-color: $body-bg;
+  color: $font-color;
   font-family: $font-family;
   font-size: $font-size;
 }
+
+.section {
+  max-width: 71.25rem;
+  margin: 2rem auto;
+}
+
+.rico__logo {
+  float: right;
+  max-width: 7.5rem;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+
+.nowrap { white-space: nowrap; }

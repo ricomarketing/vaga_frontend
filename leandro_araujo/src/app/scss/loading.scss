@@ -1,0 +1,76 @@
+.loading {
+  background-color: rgba(black, .7);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: $z-index--6;
+}
+
+.spinner {
+  font-size: $font-size;
+  //font-size: 10px;
+  height: 4em;
+  width: 4em;
+  text-align: center;
+
+  margin-top: -2em;
+  margin-left: -2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  -webkit-animation: sk-rotate 2s infinite linear;
+          animation: sk-rotate 2s infinite linear;
+}
+
+.dot1,
+.dot2 {
+  background-color: $color-primary;
+  border-radius: 100%;
+  display: inline-block;
+  height: 60%;
+  width: 60%;
+  position: absolute;
+  top: 0;
+
+  -webkit-animation: sk-bounce 2s infinite ease-in-out;
+          animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+@-webkit-keyframes sk-rotate {
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes sk-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes sk-bounce {
+  0%,
+  100% { -webkit-transform: scale(0) }
+
+  50% { -webkit-transform: scale(1) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}

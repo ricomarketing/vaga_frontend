@@ -1,0 +1,14 @@
+{
+  "name": "rico",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular": "~1.5.3",
+    "angularjs-slider": "^5.5.1",
+    "angular-google-chart": "^0.1.0"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "~1.5.3"
+  }
+}

@@ -1,0 +1,48 @@
+// treasury
+[{
+  "id" (integer),
+
+  // NOME DO PRODUTO
+  "name" (string),
+
+  "type": {
+    // NOME DO TIPO DO PRODUTO
+    "name" (string)
+  },
+
+  "index": {
+    // CÓDIGO DO INDEXADOR
+    "name" (string)
+  },
+
+  // VALOR PARA A QUANTIDADE MÍNIMA
+  "value" (float),
+
+  // VALOR DE COMPRA DA UNIDADE (1)
+  "currentUnitValue" (float),
+
+  // QUANTIDADE MÍNIMA DE COMPRA
+  "minimumQuantity" (float),
+
+  // VALOR MÍNIMO DE COMPRA
+  "minimumValue" (float),
+
+  // TAXA DE RENDIMENTO POR ANO (DEVE SER SOMADA À TAXA DO INDEXADOR)
+  "currentInterestRate" (float),
+
+  // VALOR NOMINAL DO PERCENTUAL DE TAXA
+  "currentInterestPercentageValue" (float),
+
+  // DATA DE LANÇAMENTO
+  "issueDate" (DateISOString yyyy-MM-dd),
+
+  // DATA DE VENCIMENTO DO PRODUTO (DATA MÁX. QUE VOCÊ PODE FICAR INVESTIDO NO PRODUTO))
+  "maturityDate": (DateISOString yyyy-MM-dd)
+}]
+
+
+// indexes
+{
+  "SELIC" (float),
+  "IPCA" (float)
+}

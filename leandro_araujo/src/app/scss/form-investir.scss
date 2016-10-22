@@ -1,0 +1,94 @@
+.form {
+  background-color: #fff;
+  border: 2px solid darken(#fff, 5);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  @include clearfix;
+
+  &__title {
+    color: $title-color;
+    font-size: 1.25rem;
+    font-family: $title-font-family;
+    text-transform: uppercase;
+
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  &__group { margin-bottom: 1em; }
+
+  &__group > label {
+    display: inline-block;
+    margin-bottom: .25rem;
+  }
+
+  &__control {
+    border: 1px solid currentColor;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    color: $form-color;
+    display: block;
+    height: 2rem;
+    width: 100%;
+    padding: .375rem 0;
+  }
+
+  &__control:focus {
+    border-bottom-color: $color-primary;
+    outline-color: transparent;
+  }
+
+  &__group--error { color: red; }
+
+  &__group--error .form__control { border-bottom-color: red; }
+
+  .form__button {
+    background-color: darken($color-primary, 5);
+    border: 1px solid transparent;
+    color: #fff;
+    cursor: pointer;
+    font-family: $title-font-family;
+    text-transform: uppercase;
+
+    padding: 17px 34px;
+
+    clear: both;
+    float: right;
+  }
+
+  .form__button:hover,
+  .form__button:focus { background-color: $color-primary; }
+}
+
+
+.rzslider {
+  margin: 15px 0 35px 0;
+
+  .rz-bar.rz-selection,
+  .rz-pointer,
+  .rz-ticks .rz-tick.rz-selected { background-color: $color-primary; }
+
+  .rz-pointer.rz-active:after { background-color: $color-secondary; }
+
+  .rz-bubble {
+    color: $color-secondary;
+    font-size: 12px;
+    bottom: -32px;
+  }
+}
+
+@media (min-width: 740px) {
+  .form__group {
+    float: left;
+    width: 30%;
+    padding-right: 1rem;
+  }
+
+  .form__group + .form__group {
+    padding-left: 1rem;
+    padding-right: 0;
+    width: 70%;
+    margin-bottom: 0;
+  }
+}

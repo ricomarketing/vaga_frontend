@@ -1,0 +1,85 @@
+
+<div class="loading" ng-if="!main.mostraView">
+  <div class="spinner">
+    <div class="dot1"></div>
+    <div class="dot2"></div>
+  </div>
+</div>
+
+<section class="section"
+ng-if="main.mostraView">
+  <form class="form"
+  name="formInvestimento"
+  ng-submit="main.investir(main.valorInvestido, main.sliderConfigs.minValue)">
+    <a class="rico__logo"
+    title="Ir para o site da Rico.com.vc"
+    href="https://www.rico.com.vc/">
+      <img alt="Marca da Rico.com.vc"
+      src="assets/images/rico-logo.png">
+    </a>
+
+    <h1 class="form__title">Simulador de Investimento</h1>
+
+    <div class="form__group"
+    ng-class="{'form__group--error' : main.preencherValor}">
+      <label for="input__valorInvestido">Valor a ser investido:</label>
+
+      <input class="form__control"
+      id="input__valorInvestido"
+      name="valorInvestido"
+      type="number"
+      min="{{ main.valorMinimo }}"
+      step="0.01"
+      ng-model="main.valorInvestido" />
+    </div>
+
+    <div class="form__group">
+      <label for="input__tempoInvestimento">Tempo de investimento:</label>
+
+      <rzslider id="input__tempoInvestimento"
+      rz-slider-model="main.sliderConfigs.minValue"
+      rz-slider-options="main.sliderConfigs.options"></rzslider>
+    </div>
+
+    <button class="form__button"
+    type="submit">Investir</button>
+  </form>
+
+  <article class="article" ng-if="main.mostraTabela">
+    <h2 class="article__title">Melhores Títulos para se Investir</h2>
+
+    <table class="table">
+      <caption>
+        Cálculo aproximado utilizando {{ main.listaValorAinvestir | currency:"R$ " }} investido em
+
+        {{ main.listaTempoAinvestir }} dias
+      </caption>
+
+      <thead>
+        <tr>
+          <th class="text-center" width="10">#</th>
+          <th class="text-left">Título</th>
+          <th>Tx. de Rendimento</th>
+          <th>Rentabilidade</th>
+          <th>Rendimento</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr id="tesouro__{{ ::item.id }}"
+        ng-repeat="item in main.listaCincoMelhores | orderBy:'-rentabilidade' ">
+          <th class="text-center">{{ $index+1 }}</td>
+          <td class="text-left">{{ item.name }}</td>
+          <td>{{ item.currentInterestRate | percent }} a.a</td>
+          <td>{{ item.rentabilidade | percent }}</td>
+          <td class="nowrap">{{ item.valorResgate | currency:'R$ ' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart"
+    ng-if="main.mostraGrafico">
+      <div google-chart chart="main.graficoConfig"></div>
+    </div>
+  </article>
+</section>

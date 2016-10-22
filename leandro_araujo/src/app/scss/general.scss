@@ -14,6 +14,8 @@ body {
   font-size: $font-size;
 }
 
+:focus { outline-color: $color-secondary; }
+
 .section {
   max-width: 71.25rem;
   margin: 2rem auto;
